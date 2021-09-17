@@ -9,13 +9,14 @@ import SwiftUI
 import MapKit
 
 struct TaskListView: View {
+    @ObservedObject var taskListVM = TaskListViewModel()
     let tasks = testDataTasks
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                List(tasks) { task in
-                    TaskCell(task: task)
+                List(taskListVM.taskCellViewModels) { taskCellVM in
+                    TaskCell(taskCellVM: taskCellVM)
                 }
                 Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
                     HStack {
@@ -39,13 +40,14 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct TaskCell: View {
-    let task: Task
+    @ObservedObject var taskCellVM: TaskCellViewModel
+
     var body: some View {
         HStack {
-            Image(systemName: task.completed ? "checkmark.circle.fill" : "circle")
+            Image(systemName: taskCellVM.task.completed ? "checkmark.circle.fill" : "circle")
                 .resizable()
                 .frame(width: 20, height: 20, alignment: .center)
-            Text(task.title)
+            Text(taskCellVM.task.title)
                 .padding()
         }
     }

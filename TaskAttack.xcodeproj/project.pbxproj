@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		965BBE3126F5113B00E3FEDE /* TaskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE3026F5113B00E3FEDE /* TaskCellViewModel.swift */; };
+		965BBE3326F5132600E3FEDE /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE3226F5132600E3FEDE /* TaskListViewModel.swift */; };
 		96C43A8226F38D8C0046A3B8 /* TaskAttackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C43A8126F38D8C0046A3B8 /* TaskAttackApp.swift */; };
 		96C43A8426F38D8C0046A3B8 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C43A8326F38D8C0046A3B8 /* TaskListView.swift */; };
 		96C43A8626F38D8D0046A3B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96C43A8526F38D8D0046A3B8 /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		965BBE3026F5113B00E3FEDE /* TaskCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellViewModel.swift; sourceTree = "<group>"; };
+		965BBE3226F5132600E3FEDE /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		96C43A7E26F38D8C0046A3B8 /* TaskAttack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskAttack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C43A8126F38D8C0046A3B8 /* TaskAttackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAttackApp.swift; sourceTree = "<group>"; };
 		96C43A8326F38D8C0046A3B8 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
@@ -84,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		965BBE2F26F5110500E3FEDE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				965BBE3026F5113B00E3FEDE /* TaskCellViewModel.swift */,
+				965BBE3226F5132600E3FEDE /* TaskListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		96C43A7526F38D8B0046A3B8 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +122,7 @@
 			children = (
 				96C43AC526F3A0B90046A3B8 /* App */,
 				96C43AC226F39F430046A3B8 /* Model */,
+				965BBE2F26F5110500E3FEDE /* ViewModels */,
 				96C43AC626F3A4E00046A3B8 /* Views */,
 				96C43A8526F38D8D0046A3B8 /* Assets.xcassets */,
 				96C43A8A26F38D8D0046A3B8 /* Info.plist */,
@@ -307,6 +321,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C43A8426F38D8C0046A3B8 /* TaskListView.swift in Sources */,
+				965BBE3126F5113B00E3FEDE /* TaskCellViewModel.swift in Sources */,
+				965BBE3326F5132600E3FEDE /* TaskListViewModel.swift in Sources */,
 				96C43AC426F39F670046A3B8 /* Task.swift in Sources */,
 				96C43A8226F38D8C0046A3B8 /* TaskAttackApp.swift in Sources */,
 			);
