@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct TaskListView: View {
     let tasks = testDataTasks
