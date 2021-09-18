@@ -9,8 +9,9 @@ import Foundation
 import Combine
 
 class TaskCellViewModel: ObservableObject, Identifiable {
+    @Published var taskRepository = TaskRepository()
     @Published var task: Task
-    
+     
     private var cancellables = Set<AnyCancellable>()
     
     var id: String = ""
@@ -25,12 +26,19 @@ class TaskCellViewModel: ObservableObject, Identifiable {
             }
             .assign(to: \.completionStateIconName, on: self)
             .store(in: &cancellables)
-        
-        $task
-            .map { task in
+                 $task
+            .compactMap { task in
                 task.id
             }
             .assign(to: \.id, on: self)
+            .store(in: &cancellables)
+        
+        $task
+            .dropFirst()  // Avoid infinite loops supposedly
+            .debounce(for: 0.8, scheduler: RunLoop.main)  //  Only make changes once you have stopped typing
+            .sink { task in
+                self.taskRepository.updateTask(task: task)
+            }
             .store(in: &cancellables)
     }
     
