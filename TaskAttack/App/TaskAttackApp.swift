@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseAuth
 
-
+    
 @main
 struct TaskAttackApp: App {
     
@@ -28,7 +28,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         
         // Firebase anonymous sign in
-        Auth.auth().signInAnonymously()
+        if Auth.auth().currentUser == nil {
+            Auth.auth().signInAnonymously()
+        }
+        
         
         return true
     }

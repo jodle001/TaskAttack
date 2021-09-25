@@ -73,6 +73,19 @@ extension SignInWithAppleCoordinator: ASAuthorizationControllerDelegate {
                                                 idToken: idTokenString,
                                                 rawNonce: nonce)
         Auth.auth().currentUser?.link(with: credential, completion: { (authresult, error) in
+            if let error = error, (error as NSError).code == AuthErrorCode.credentialAlreadyInUse.rawValue {
+                print("The user you're trying to signin with has already been linked.")
+                if let updatedCredential = (error as NSError).userInfo[AuthErrorUserInfoUpdatedCredentialKey] as? OAuthCredential {
+                    print("Signing in using the updated credentials")
+                    Auth.auth().signIn(with: updatedCredential) { (authResult, error) in
+                        if let user = authResult?.user {
+                            if let callback = self.onSignedIn {
+                                callback()
+                            }
+                        }
+                    }
+                }
+            }
             if error != nil {
                 print("Error signing in: \(error?.localizedDescription)")
             }
