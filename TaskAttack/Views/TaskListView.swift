@@ -12,6 +12,7 @@ struct TaskListView: View {
     @ObservedObject var taskListVM = TaskListViewModel()
     let tasks = testDataTasks
     @State var presentAddNewItem = false
+    @State var showSignInForm = false
     
     var body: some View {
         NavigationView {
@@ -36,6 +37,14 @@ struct TaskListView: View {
                     }
                 }
                 .padding()
+            }
+            .sheet(isPresented: $showSignInForm) {
+                SigninView()
+            }
+            .toolbar() {
+                Button(action: {self.showSignInForm.toggle()}) {
+                    Image(systemName: "person.circle")
+                }
             }
             .navigationTitle("Tasks")
         }
