@@ -42,24 +42,25 @@ class TaskRepository: ObservableObject {
 //                }
 //            }
 //        }
-        
-        // This is how to access sub-collections within a parent collection.
-        db.collection("users").document(userID!).collection("tasks")
-            .order(by: "createdTime")
-            .addSnapshotListener { ( querySnapshot, error ) in
-                if let querySnapshot = querySnapshot {
-                    self.tasks = querySnapshot.documents.compactMap { document in
-                        do {
-                            let x = try document.data(as: Task.self)
-                            return x
+        if try userID != nil {
+            // This is how to access sub-collections within a parent collection.
+            db.collection("users").document(userID!).collection("tasks")
+                .order(by: "createdTime")
+                .addSnapshotListener { ( querySnapshot, error ) in
+                    if let querySnapshot = querySnapshot {
+                        self.tasks = querySnapshot.documents.compactMap { document in
+                            do {
+                                let x = try document.data(as: Task.self)
+                                return x
+                            }
+                            catch {
+                                print(error)
+                            }
+                            return nil
                         }
-                        catch {
-                            print(error)
-                        }
-                        return nil
                     }
                 }
-            }
+        }
         
     }
     

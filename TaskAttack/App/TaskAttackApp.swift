@@ -17,7 +17,8 @@ struct TaskAttackApp: App {
      
     var body: some Scene {
         WindowGroup {
-            TaskListView()
+//            TaskListView()
+            MainView()
         }
     }
 }
@@ -26,7 +27,7 @@ struct TaskAttackApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-        
+
         // Firebase anonymous sign in
         if Auth.auth().currentUser == nil {
             Auth.auth().signInAnonymously()
