@@ -42,7 +42,7 @@ class TaskRepository: ObservableObject {
 //                }
 //            }
 //        }
-        if try userID != nil {
+        if userID != nil {
             // This is how to access sub-collections within a parent collection.
             db.collection("users").document(userID!).collection("tasks")
                 .order(by: "createdTime")

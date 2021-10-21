@@ -17,7 +17,6 @@ struct TaskAttackApp: App {
      
     var body: some Scene {
         WindowGroup {
-//            TaskListView()
             MainView()
         }
     }

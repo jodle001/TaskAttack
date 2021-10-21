@@ -8,10 +8,11 @@ import SwiftUI
 
 struct MainView: View {
   @Environment(\.calendar) var calendar
+    var currentDate: Date = Date();
   
     // This actually sets the interval, you can change this to show more or less.
   private var year: DateInterval {
-    calendar.dateInterval(of: .month, for: Date())!
+      calendar.dateInterval(of: .month, for: currentDate)!
   }
   
   var body: some View {
@@ -21,7 +22,7 @@ struct MainView: View {
           CalendarView(interval: year) { date in
               Text(String(self.calendar.component(.day, from: date)))
                 .frame(width: 35, height: 35, alignment: .center)
-                .background(Color("DayIcons"))
+                .background(date.get(.day) == currentDate.get(.day) ? Color(.blue) : Color("DayIcons") )
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.vertical, 3)
                 .foregroundColor(Color("DayIconNumber"))
@@ -39,3 +40,4 @@ struct MainView_Previews: PreviewProvider {
             .preferredColorScheme(.dark)
     }
 }
+    
