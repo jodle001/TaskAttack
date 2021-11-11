@@ -49,17 +49,19 @@ fileprivate extension Calendar {
 
 struct CalendarView<DateView>: View where DateView: View {
     @Environment(\.calendar) var calendar
+    @ObservedObject var monthVM = MonthViewModel();
+    @State var showDay = false;
 
-    let interval: DateInterval
+//    let interval: DateInterval
     let showHeaders: Bool
     let content: (Date) -> DateView
 
     init(
-        interval: DateInterval,
+//        interval: DateInterval = monthVM.month,
         showHeaders: Bool = true,
         @ViewBuilder content: @escaping (Date) -> DateView
     ) {
-        self.interval = interval
+//        self.interval = interval
         self.showHeaders = showHeaders
         self.content = content
     }
@@ -72,6 +74,10 @@ struct CalendarView<DateView>: View where DateView: View {
                         ForEach(days(for: month), id: \.self) { date in
                             if calendar.isDate(date, equalTo: month, toGranularity: .month) {
                                 content(date).id(date)
+                                    .onTapGesture {
+                                        print(date.get(.day))
+                                        showDay.toggle()
+                                    }
                             } else {
                                 content(date).hidden()
                             }
@@ -80,11 +86,15 @@ struct CalendarView<DateView>: View where DateView: View {
                 }
             }
         }
+        .sheet(isPresented: $showDay) {
+            DayView()
+        }
     }
 
     private var months: [Date] {
         calendar.generateDates(
-            inside: interval,
+//            inside: interval,
+            inside: monthVM.month,
             matching: DateComponents(day: 1, hour: 0, minute: 0, second: 0)
         )
     }
@@ -105,6 +115,10 @@ struct CalendarView<DateView>: View where DateView: View {
                                 .stroke(Color("DayIcons"), lineWidth: 2)
                                 )
                         .foregroundColor(Color("DayIconNumber"))
+                        .onTapGesture {
+                            monthVM.adjustMonth(number: -1);
+                            print("leftArrow");
+                        }
                     Spacer()
                     Text(formatter.string(from: month))
                         .font(.title)
@@ -120,6 +134,10 @@ struct CalendarView<DateView>: View where DateView: View {
                                 .stroke(Color("DayIcons"), lineWidth: 2)
                                 )
                         .foregroundColor(Color("DayIconNumber"))
+                        .onTapGesture {
+                            monthVM.adjustMonth(number: 1);
+                            print("rightArrow");
+                        }
                 }
                 .padding(.horizontal)
             }
@@ -141,7 +159,7 @@ struct CalendarView<DateView>: View where DateView: View {
 
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarView(interval: .init()) { _ in
+        CalendarView() { _ in
             Text("30")
                 .padding(8)
                 .background(Color.gray)

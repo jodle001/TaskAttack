@@ -7,31 +7,16 @@
 import SwiftUI
 
 struct MainView: View {
-  @Environment(\.calendar) var calendar
-    var currentDate: Date = Date();
-  
-    // This actually sets the interval, you can change this to show more or less.
-  private var year: DateInterval {
-      calendar.dateInterval(of: .month, for: currentDate)!
-  }
-  
-  var body: some View {
+    var body: some View {
       VStack {
           // Main calendar view that shows a month.
           // TODO: should be able to select dates at somepoint to show a day view of that day.
-          CalendarView(interval: year) { date in
-              Text(String(self.calendar.component(.day, from: date)))
-                .frame(width: 35, height: 35, alignment: .center)
-                .background(date.get(.day) == currentDate.get(.day) ? Color(.blue) : Color("DayIcons") )
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.vertical, 3)
-                .foregroundColor(Color("DayIconNumber"))
-          }
+          MainMonthView()
           // This is the list view we have made that has basic features.
           // TODO: Move the signin to the top of the MainView instead of inside the TaskView
           TaskListView()
       }
-  }
+    }
 }
 
 struct MainView_Previews: PreviewProvider {
@@ -41,3 +26,19 @@ struct MainView_Previews: PreviewProvider {
     }
 }
     
+
+struct MainMonthView: View {
+    var monthModel = MonthViewModel();
+    
+    var body: some View {
+        CalendarView() { date in
+            Text(String(monthModel.calendar.component(.day, from: date)))
+                .frame(width: 35, height: 35, alignment: .center)
+                .background(monthModel.todayDate(date: date) ? Color(.blue) : Color("DayIcons"))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.vertical, 3)
+                .foregroundColor(Color("DayIconNumber"))
+        }
+    }
+    
+}

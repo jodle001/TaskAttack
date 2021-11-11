@@ -21,6 +21,7 @@ struct TaskListView: View {
                     ForEach(taskListVM.taskCellViewModels) { taskCellVM in
                         TaskCell(taskCellVM: taskCellVM)
                     }
+                    .onDelete(perform: delete)
                     if presentAddNewItem {
                         TaskCell(taskCellVM: TaskCellViewModel(task: Task(title: "", completed: false))) { task in
                             self.taskListVM.addTask(task: task)
@@ -49,6 +50,11 @@ struct TaskListView: View {
             .navigationTitle("Tasks")
         }
     }
+    
+    func delete(at offsets: IndexSet) {
+        print("delete")
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

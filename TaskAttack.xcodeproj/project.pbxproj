@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		964030FE2736CBB7002D6374 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964030FD2736CBB7002D6374 /* Event.swift */; };
+		964031002736CFA4002D6374 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964030FF2736CFA4002D6374 /* EventListViewModel.swift */; };
+		964031022736CFFE002D6374 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964031012736CFFE002D6374 /* EventRepository.swift */; };
+		964031042736D15C002D6374 /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964031032736D15C002D6374 /* EventCellViewModel.swift */; };
+		964031062736D3A3002D6374 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964031052736D3A3002D6374 /* EventListView.swift */; };
 		964CEF2526F62AB8002D6A04 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964CEF2426F62AB8002D6A04 /* TaskRepository.swift */; };
 		9656B2C426FEC3DE00BDC7D2 /* SignInWithAppleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656B2C326FEC3DE00BDC7D2 /* SignInWithAppleCoordinator.swift */; };
 		965BBE3126F5113B00E3FEDE /* TaskCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE3026F5113B00E3FEDE /* TaskCellViewModel.swift */; };
 		965BBE3326F5132600E3FEDE /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BBE3226F5132600E3FEDE /* TaskListViewModel.swift */; };
 		96863F292721C68200272EBE /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96863F282721C68200272EBE /* DateExtension.swift */; };
+		9699AE23272D9482002F4ABF /* MonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9699AE22272D9482002F4ABF /* MonthViewModel.swift */; };
+		96A32FFA27342DBF00190C2D /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A32FF927342DBF00190C2D /* DayView.swift */; };
 		96BD6D342718600200844130 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BD6D332718600200844130 /* MonthView.swift */; };
 		96BD6D362718630C00844130 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BD6D352718630B00844130 /* MainView.swift */; };
 		96BE2E7F26FCC87A00F4179C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 96BE2E7E26FCC87A00F4179C /* FirebaseAnalytics */; };
@@ -52,11 +59,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		964030FD2736CBB7002D6374 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		964030FF2736CFA4002D6374 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
+		964031012736CFFE002D6374 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
+		964031032736D15C002D6374 /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
+		964031052736D3A3002D6374 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		964CEF2426F62AB8002D6A04 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		9656B2C326FEC3DE00BDC7D2 /* SignInWithAppleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleCoordinator.swift; sourceTree = "<group>"; };
 		965BBE3026F5113B00E3FEDE /* TaskCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellViewModel.swift; sourceTree = "<group>"; };
 		965BBE3226F5132600E3FEDE /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		96863F282721C68200272EBE /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		9699AE22272D9482002F4ABF /* MonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewModel.swift; sourceTree = "<group>"; };
+		96A32FF927342DBF00190C2D /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		96BD6D332718600200844130 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		96BD6D352718630B00844130 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		96BE2E8E26FCCB1400F4179C /* SigninWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninWithAppleButton.swift; sourceTree = "<group>"; };
@@ -115,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				964CEF2426F62AB8002D6A04 /* TaskRepository.swift */,
+				964031012736CFFE002D6374 /* EventRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -131,7 +146,10 @@
 			isa = PBXGroup;
 			children = (
 				965BBE3026F5113B00E3FEDE /* TaskCellViewModel.swift */,
+				964031032736D15C002D6374 /* EventCellViewModel.swift */,
 				965BBE3226F5132600E3FEDE /* TaskListViewModel.swift */,
+				964030FF2736CFA4002D6374 /* EventListViewModel.swift */,
+				9699AE22272D9482002F4ABF /* MonthViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -213,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				96C43AC326F39F670046A3B8 /* Task.swift */,
+				964030FD2736CBB7002D6374 /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,8 +250,10 @@
 				96BD6D352718630B00844130 /* MainView.swift */,
 				96BD6D332718600200844130 /* MonthView.swift */,
 				96C43A8326F38D8C0046A3B8 /* TaskListView.swift */,
+				964031052736D3A3002D6374 /* EventListView.swift */,
 				96BE2E8E26FCCB1400F4179C /* SigninWithAppleButton.swift */,
 				96BE2E9026FCCC2F00F4179C /* SigninView.swift */,
+				96A32FF927342DBF00190C2D /* DayView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,14 +403,21 @@
 			files = (
 				964CEF2526F62AB8002D6A04 /* TaskRepository.swift in Sources */,
 				96863F292721C68200272EBE /* DateExtension.swift in Sources */,
+				96A32FFA27342DBF00190C2D /* DayView.swift in Sources */,
 				96BD6D342718600200844130 /* MonthView.swift in Sources */,
+				964030FE2736CBB7002D6374 /* Event.swift in Sources */,
 				96BE2E8F26FCCB1400F4179C /* SigninWithAppleButton.swift in Sources */,
 				96C43A8426F38D8C0046A3B8 /* TaskListView.swift in Sources */,
+				9699AE23272D9482002F4ABF /* MonthViewModel.swift in Sources */,
+				964031062736D3A3002D6374 /* EventListView.swift in Sources */,
 				9656B2C426FEC3DE00BDC7D2 /* SignInWithAppleCoordinator.swift in Sources */,
 				965BBE3126F5113B00E3FEDE /* TaskCellViewModel.swift in Sources */,
 				965BBE3326F5132600E3FEDE /* TaskListViewModel.swift in Sources */,
 				96BD6D362718630C00844130 /* MainView.swift in Sources */,
 				96C43AC426F39F670046A3B8 /* Task.swift in Sources */,
+				964031042736D15C002D6374 /* EventCellViewModel.swift in Sources */,
+				964031022736CFFE002D6374 /* EventRepository.swift in Sources */,
+				964031002736CFA4002D6374 /* EventListViewModel.swift in Sources */,
 				96BE2E9126FCCC2F00F4179C /* SigninView.swift in Sources */,
 				96C43A8226F38D8C0046A3B8 /* TaskAttackApp.swift in Sources */,
 			);
