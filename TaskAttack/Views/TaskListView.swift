@@ -22,6 +22,7 @@ struct TaskListView: View {
                         TaskCell(taskCellVM: taskCellVM)
                     }
                     .onDelete(perform: delete)
+
                     if presentAddNewItem {
                         TaskCell(taskCellVM: TaskCellViewModel(task: Task(title: "", completed: false))) { task in
                             self.taskListVM.addTask(task: task)

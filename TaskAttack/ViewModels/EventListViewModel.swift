@@ -32,4 +32,8 @@ class EventListViewModel: ObservableObject {
         
     }
     
+    func delete(event: Event) {
+        eventRepository.deleteEvent(event: event)
+    }
+    
 }

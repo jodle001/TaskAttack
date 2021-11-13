@@ -58,6 +58,17 @@ class EventRepository: ObservableObject {
         
     }
     
+    func deleteEvent( event: Event) {
+        do {
+            var deleteEvent = event
+            deleteEvent.userID = Auth.auth().currentUser?.uid
+            let _ = try db.collection("users").document(deleteEvent.userID!).collection("events").document(deleteEvent.id!).delete()
+        }
+        catch {
+            fatalError("Unable to delete event: \(error.localizedDescription)")
+        }
+    }
+    
     func updateEvent( event: Event) {
         let userID = Auth.auth().currentUser?.uid  // added for getting the subcollection
         if let eventID = event.id {

@@ -18,10 +18,27 @@ struct EventListView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 List{
-                    ForEach(eventListVM.eventCellViewModels) { eventCellVM in
-                        EventCell(eventCellVM: eventCellVM)
+                    if #available(iOS 15.0, *) {
+                        ForEach(eventListVM.eventCellViewModels) { eventCellVM in
+                            EventCell(eventCellVM: eventCellVM)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive) {
+                                        eventListVM.delete(event: eventCellVM.event)
+                                        print("Deleting conversation")
+                                    } label: {
+                                        Label("Delete", systemImage: "trash.fill")
+                                    }
+                                }
+                                .swipeActions(edge: .leading, allowsFullSwipe: false){
+                                    Button("add time") {
+                                        print("Right on!")
+                                    }
+                                    .tint(.green)
+                                }
+                        }
+                    } else {
+                        // Fallback on earlier versions
                     }
-                    .onDelete(perform: delete)
                     if presentAddNewItem {
                         EventCell(eventCellVM: EventCellViewModel(event: Event(title: "", body: "", time: DateInterval(start: Date(), duration: 0)))) { event in
                             self.eventListVM.addEvent(event: event)
@@ -39,15 +56,6 @@ struct EventListView: View {
                 }
                 .padding()
             }
-//            .sheet(isPresented: $showSignInForm) {
-//                SigninView()
-//            }
-//            .toolbar() {
-//                Button(action: {self.showSignInForm.toggle()}) {
-//                    Image(systemName: "person.circle")
-//                }
-//            }
-//            .navigationTitle("Events")
         }
     }
     
