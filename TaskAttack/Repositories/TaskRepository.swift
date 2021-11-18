@@ -90,4 +90,15 @@ class TaskRepository: ObservableObject {
         }
     }
     
+    func deleteTask( task: Task) {
+        do {
+            var deleteTask = task
+            deleteTask.userID = Auth.auth().currentUser?.uid
+            let _ = try db.collection("users").document(deleteTask.userID!).collection("tasks").document(deleteTask.id!).delete()
+        }
+        catch {
+            fatalError("Unable to delete event: \(error.localizedDescription)")
+        }
+    }
+    
 }
