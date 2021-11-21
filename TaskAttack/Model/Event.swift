@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct Event: Codable, Identifiable {
+struct Event: Codable, Identifiable{
     @DocumentID var id: String?
     @ServerTimestamp var createdTime: Timestamp?
     var title: String
@@ -21,6 +21,6 @@ struct Event: Codable, Identifiable {
 
 #if DEBUG
 let testDataEvents = [
-    Event(title: "Implement the UI", body: "test1", time: DateInterval(start: Date(), duration: 0))
+    Event(title: "test title", body: "Test body", time: DateInterval(start: Date(), duration: 0))
 ]
 #endif

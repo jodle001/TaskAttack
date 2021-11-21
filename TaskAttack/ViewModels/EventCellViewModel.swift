@@ -21,12 +21,6 @@ class EventCellViewModel: ObservableObject, Identifiable {
         self.event = event
         
         $event
-//            .map { event in
-//                event. ? "checkmark.circle.fill" : "circle"
-//            }
-//            .assign(to: \.completionStateIconName, on: self)
-//            .store(in: &cancellables)
-//                 $event
             .compactMap { event in
                 event.id
             }

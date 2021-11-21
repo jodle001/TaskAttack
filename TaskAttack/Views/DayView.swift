@@ -8,32 +8,48 @@
 import SwiftUI
 
 struct DayView: View {
+    
+    let day: Date
+    
     var body: some View {
         VStack {
-            Text("Thursday November 4th")
+            Text("\(WeekDay.allCases[day.get(.weekday)-1].rawValue) \(MonthName.allCases[day.get(.month)-1].rawValue) \(day.get(.day))th")
                 .font(.title)
                 .underline()
                 .foregroundColor(Color("DayIconNumber"))
             Spacer()
-            EventListView()
-//            List{
-//                ForEach(0..<4) {_ in
-//                    HStack {
-//                        Image(systemName: "circle")
-//                            .resizable()
-//                            .frame(width: 20, height: 20, alignment: .center)
-//
-//                        Text("Enter the task title")
-//                    }
-//
-//                }
-//            }
+            EventListView(date: day)
             }
         }
     }
 
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
-        DayView()
+        DayView(day: Date())
     }
+}
+
+enum WeekDay: String, CaseIterable {
+    case Sunday
+    case Monday
+    case Tuesday
+    case Wednesday
+    case Thursday
+    case Friday
+    case Saturday
+}
+
+enum MonthName: String, CaseIterable {
+    case January
+    case February
+    case March
+    case April
+    case May
+    case June
+    case July
+    case August
+    case September
+    case October
+    case November
+    case December
 }

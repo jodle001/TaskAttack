@@ -10,9 +10,10 @@ import MapKit
 
 struct EventListView: View {
     @ObservedObject var eventListVM = EventListViewModel()
-    let events = testDataEvents
     @State var presentAddNewItem = false
-    @State var showSignInForm = false
+    @State var showDetailView = false
+    
+    var date: Date
     
     var body: some View {
         NavigationView {
@@ -20,21 +21,29 @@ struct EventListView: View {
                 List{
                     if #available(iOS 15.0, *) {
                         ForEach(eventListVM.eventCellViewModels) { eventCellVM in
-                            EventCell(eventCellVM: eventCellVM)
-                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    Button(role: .destructive) {
-                                        eventListVM.delete(event: eventCellVM.event)
-                                        print("Deleting conversation")
-                                    } label: {
-                                        Label("Delete", systemImage: "trash.fill")
+                            if (sameDay(date1: eventCellVM.event.time.start, date2: date)) {
+                                EventCell(eventCellVM: eventCellVM)
+                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                        Button(role: .destructive) {
+                                            eventListVM.delete(event: eventCellVM.event)
+                                            print("Deleting conversation")
+                                        } label: {
+                                            Label("Delete", systemImage: "trash.fill")
+                                        }
                                     }
-                                }
-                                .swipeActions(edge: .leading, allowsFullSwipe: false){
-                                    Button("add time") {
-                                        print("Right on!")
+                                    .swipeActions(edge: .leading, allowsFullSwipe: false){
+                                        Button("add time") {
+                                            print("Right on!")
+                                        }
+                                        .tint(.green)
                                     }
-                                    .tint(.green)
-                                }
+                                    .onTapGesture() {
+                                        showDetailView.toggle()
+                                    }
+                                    .sheet(isPresented: $showDetailView) {
+                                        EventDetailView(event: eventCellVM);
+                                    }
+                            }
                         }
                     } else {
                         // Fallback on earlier versions
@@ -63,11 +72,17 @@ struct EventListView: View {
         print("delete")
     }
     
+    func sameDay(date1: Date, date2: Date) -> Bool {
+        return date1.get(.year) == date2.get(.year) &&
+               date1.get(.month) == date2.get(.month) &&
+               date1.get(.day) == date2.get(.day)
+    }
+    
 }
 
 struct EventListView_Previews: PreviewProvider {
     static var previews: some View {
-        EventListView()
+        EventListView(date: Date())
     }
 }
 

@@ -49,7 +49,6 @@ class EventRepository: ObservableObject {
         do {
             var addedEvent = event
             addedEvent.userID = Auth.auth().currentUser?.uid
-//            let _ = try db.collection("tasks").addDocument(from: addedTask)
             let _ = try db.collection("users").document(addedEvent.userID!).collection("events").addDocument(from: addedEvent)
         }
         catch {
@@ -73,7 +72,6 @@ class EventRepository: ObservableObject {
         let userID = Auth.auth().currentUser?.uid  // added for getting the subcollection
         if let eventID = event.id {
             do {
-//                try db.collection("tasks").document(taskID).setData(from: task)
                 try db.collection("users").document(userID!).collection("events").document(eventID).setData(from: event)
             }
             catch {

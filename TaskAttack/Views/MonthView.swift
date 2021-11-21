@@ -49,8 +49,9 @@ fileprivate extension Calendar {
 
 struct CalendarView<DateView>: View where DateView: View {
     @Environment(\.calendar) var calendar
-    @ObservedObject var monthVM = MonthViewModel();
+    @ObservedObject var monthVM = MonthViewModel()
     @State var showDay = false;
+    @State var day: Date = Date()
 
 //    let interval: DateInterval
     let showHeaders: Bool
@@ -75,7 +76,7 @@ struct CalendarView<DateView>: View where DateView: View {
                             if calendar.isDate(date, equalTo: month, toGranularity: .month) {
                                 content(date).id(date)
                                     .onTapGesture {
-                                        print(date.get(.day))
+                                        setDay(day: date)
                                         showDay.toggle()
                                     }
                             } else {
@@ -87,10 +88,14 @@ struct CalendarView<DateView>: View where DateView: View {
             }
         }
         .sheet(isPresented: $showDay) {
-            DayView()
+                DayView(day: day)
         }
     }
 
+    private func setDay(day: Date) {
+        self.day = day
+    }
+    
     private var months: [Date] {
         calendar.generateDates(
 //            inside: interval,
