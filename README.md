@@ -30,6 +30,10 @@ This app was a collaboration between three individuals with different background
 > The design goal for TaskAttack was to create an easy to use application
 > that could be used to help organize your life. We each saw some goals we wanted to 
 > accomplish with this task.  
+> - Learn more about creating apps for IOS devices using Swift and Xcode.
+> - Use a database to store and load user data securely.
+> - Work together as a team and communicate issues, design ideas, and impelemntations.
+> - Meet our goal MVP that we outlined at the start of the project and deliver a functioning application.
 
 
 ## Tech
