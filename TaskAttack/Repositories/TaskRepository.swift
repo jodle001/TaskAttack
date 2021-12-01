@@ -42,24 +42,25 @@ class TaskRepository: ObservableObject {
 //                }
 //            }
 //        }
-        
-        // This is how to access sub-collections within a parent collection.
-        db.collection("users").document(userID!).collection("tasks")
-            .order(by: "createdTime")
-            .addSnapshotListener { ( querySnapshot, error ) in
-                if let querySnapshot = querySnapshot {
-                    self.tasks = querySnapshot.documents.compactMap { document in
-                        do {
-                            let x = try document.data(as: Task.self)
-                            return x
+        if userID != nil {
+            // This is how to access sub-collections within a parent collection.
+            db.collection("users").document(userID!).collection("tasks")
+                .order(by: "createdTime")
+                .addSnapshotListener { ( querySnapshot, error ) in
+                    if let querySnapshot = querySnapshot {
+                        self.tasks = querySnapshot.documents.compactMap { document in
+                            do {
+                                let x = try document.data(as: Task.self)
+                                return x
+                            }
+                            catch {
+                                print(error)
+                            }
+                            return nil
                         }
-                        catch {
-                            print(error)
-                        }
-                        return nil
                     }
                 }
-            }
+        }
         
     }
     
@@ -86,6 +87,17 @@ class TaskRepository: ObservableObject {
             catch {
                 fatalError("Unable to encode task: \(error.localizedDescription)")
             }
+        }
+    }
+    
+    func deleteTask( task: Task) {
+        do {
+            var deleteTask = task
+            deleteTask.userID = Auth.auth().currentUser?.uid
+            let _ = try db.collection("users").document(deleteTask.userID!).collection("tasks").document(deleteTask.id!).delete()
+        }
+        catch {
+            fatalError("Unable to delete event: \(error.localizedDescription)")
         }
     }
     

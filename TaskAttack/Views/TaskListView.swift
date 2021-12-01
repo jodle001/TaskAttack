@@ -18,9 +18,21 @@ struct TaskListView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 List{
-                    ForEach(taskListVM.taskCellViewModels) { taskCellVM in
-                        TaskCell(taskCellVM: taskCellVM)
+                    if #available(iOS 15.0, *) {
+                        ForEach(taskListVM.taskCellViewModels) { taskCellVM in
+                            TaskCell(taskCellVM: taskCellVM)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive) {
+                                        taskListVM.delete(task: taskCellVM.task)
+                                        print("Deleting conversation")
+                                    } label: {
+                                        Label("Delete", systemImage: "trash.fill")
+                                    }
+                                }
+                        }
                     }
+                    //.onDelete(perform: delete)
+
                     if presentAddNewItem {
                         TaskCell(taskCellVM: TaskCellViewModel(task: Task(title: "", completed: false))) { task in
                             self.taskListVM.addTask(task: task)
@@ -49,6 +61,11 @@ struct TaskListView: View {
             .navigationTitle("Tasks")
         }
     }
+    
+    func delete(at offsets: IndexSet) {
+        print("delete")
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
