@@ -34,7 +34,7 @@ struct EventDetailView: View {
                 Text("Body:")
                 Spacer()
             }
-            ScrollView {
+            GroupBox {
                 if #available(iOS 15.0, *) {
                     TextEditor(text: $event.event.body)
                         .onSubmit {
@@ -49,6 +49,13 @@ struct EventDetailView: View {
     }
 }
 
+//var setDate: Date
+//var title: String
+//var body: String
+//var time: DateInterval
+//var userID: String?
+
+
 struct ExDivider: View {
     let color: Color = .gray
     let width: CGFloat = 2
@@ -62,7 +69,7 @@ struct ExDivider: View {
 
 struct TaskDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let event = Event(title: "Implement the UI", body: "test1", time: DateInterval(start: Date(), duration: 0))
+        let event = Event(setDate: Date(), title: "Implement the UI", body: "test1", time: DateInterval(start: Date(), duration: 0))
         let eventVM = EventCellViewModel(event: event)
         EventDetailView(event: eventVM)
     }

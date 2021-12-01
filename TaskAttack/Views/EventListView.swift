@@ -21,7 +21,7 @@ struct EventListView: View {
                 List{
                     if #available(iOS 15.0, *) {
                         ForEach(eventListVM.eventCellViewModels) { eventCellVM in
-                            if (sameDay(date1: eventCellVM.event.time.start, date2: date)) {
+                            if (sameDay(date1: eventCellVM.event.setDate, date2: date)) {
                                 EventCell(eventCellVM: eventCellVM)
                                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                         Button(role: .destructive) {
@@ -49,7 +49,7 @@ struct EventListView: View {
                         // Fallback on earlier versions
                     }
                     if presentAddNewItem {
-                        EventCell(eventCellVM: EventCellViewModel(event: Event(title: "", body: "", time: DateInterval(start: Date(), duration: 0)))) { event in
+                        EventCell(eventCellVM: EventCellViewModel(event: Event(setDate: date, title: "", body: "", time: DateInterval(start: Date(), duration: 0)))) { event in
                             self.eventListVM.addEvent(event: event)
                             self.presentAddNewItem.toggle() // This prevents a new empty task from poping up after clicking "enter"
                         }
