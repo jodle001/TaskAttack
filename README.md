@@ -25,7 +25,7 @@ TaskAttack is a cloud-enabled, iphone application through xcode using Google Fir
 - Andrew Roopnarine
 
 
-#### Goal
+## Goal
 This app was a collaboration between three individuals with different backgrounds and strengths. 
 > The design goal for TaskAttack was to create an easy to use application
 > that could be used to help organize your life. We each saw some goals we wanted to 
