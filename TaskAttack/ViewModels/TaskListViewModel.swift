@@ -29,5 +29,9 @@ class TaskListViewModel: ObservableObject {
         
     }
     
+    func delete(task: Task) {
+        taskRepository.deleteTask(task: task)
+    }
+    
 }
 
